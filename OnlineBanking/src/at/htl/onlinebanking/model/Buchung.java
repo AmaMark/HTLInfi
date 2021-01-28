@@ -18,7 +18,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "OBBuchung", schema = "ONLINEBANKING", 
-uniqueConstraints=@UniqueConstraint(columnNames="NUMMER"))
+uniqueConstraints=@UniqueConstraint(columnNames={"KONTO","NUMMER"}))
 
 public class Buchung implements Serializable {
 	private static final long serialVersionUID = -5297985541831525081L;
@@ -106,7 +106,7 @@ public class Buchung implements Serializable {
 		konto = null;
 	}
 	public Buchung(BigDecimal b, Buchungsart a, String t) {
-		super();
+		this();
 		buchungsText = t;
 		betrag = b;
 		art = a;
