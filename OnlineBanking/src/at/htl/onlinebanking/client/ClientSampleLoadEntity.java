@@ -26,6 +26,9 @@ public class ClientSampleLoadEntity extends ClientCommon {
 					.setNachname("Huber")
 					.build();
 			em.persist(kunde100200);
+			
+            em.flush(); // force db write uncommitted, readable with uncommitted_read
+			
 			tx.commit();
 			
 			tx.begin();
@@ -35,6 +38,7 @@ public class ClientSampleLoadEntity extends ClientCommon {
             System.out.println(kunde.toString());
             kunde.setNachname("Maier");	// force update
             System.out.println(kunde.toString());
+            
 			tx.commit();
 			
 			tx.begin();
