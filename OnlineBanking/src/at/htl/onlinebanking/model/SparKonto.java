@@ -3,6 +3,7 @@ package at.htl.onlinebanking.model;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -11,6 +12,7 @@ import at.htl.onlinebanking.model.GiroKonto.GiroKontoBuilder;
 @Entity
 @DiscriminatorValue("SPAR")
 public class SparKonto extends Konto {
+	@Column(precision = 5, scale = 3)
 	private BigDecimal zinssatzHaben;
 	
 	public BigDecimal getZinssatzHaben() {

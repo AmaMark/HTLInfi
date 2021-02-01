@@ -25,15 +25,7 @@ public class Buchung implements Serializable {
 	@Id
 	private String id;
 	
-//	@TableGenerator(
-//		    table="GENERATOR_TABLE",
-//		    pkColumnName = "key",
-//		    valueColumnName = "next",
-//		    pkColumnValue="order_number",
-//		    allocationSize=30)
-//	@GeneratedValue(strategy=GenerationType.TABLE, generator="orderGenerator")
 	private Integer nummer;
-	
 	
 	private String buchungsText;
 	public String getBuchungsText() {

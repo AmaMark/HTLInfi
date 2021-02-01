@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -13,6 +14,14 @@ import at.htl.onlinebanking.model.Kunde.KundeBuilder;
 @Entity
 @DiscriminatorValue("GIRO")
 public class GiroKonto extends Konto {
+	
+	@Column(precision = 5, scale = 3)
+	private BigDecimal zinssatzHaben;
+	@Column(precision = 5, scale = 3)
+	private BigDecimal zinssatzSoll;
+	@Column(precision = 10, scale = 2)
+	private BigDecimal rahmen;
+	
 	public BigDecimal getZinssatzHaben() {
 		return zinssatzHaben;
 	}
@@ -31,10 +40,7 @@ public class GiroKonto extends Konto {
 	public void setRahmen(BigDecimal rahmen) {
 		this.rahmen = rahmen;
 	}
-	private BigDecimal zinssatzHaben;
-	private BigDecimal zinssatzSoll;
-	private BigDecimal rahmen;
-	
+
 	protected GiroKonto() {
 		super();
 	}
