@@ -19,13 +19,13 @@ public class ClientSampleLoadEntity extends ClientCommon {
 		try {			
 			openDbConnection();
 			tx.begin();
-			// sample code
+			// jpa state transient
 			Kunde kunde100200 = Kunde.builder()
 					.setKundennummer("100200")
 					.setVorname("Martin")
 					.setNachname("Huber")
 					.build();
-			em.persist(kunde100200);
+			em.persist(kunde100200); // jpa state managed
 			
             em.flush(); // force db write uncommitted, readable with uncommitted_read
 			
@@ -44,7 +44,7 @@ public class ClientSampleLoadEntity extends ClientCommon {
 			tx.begin();
 			// javax.persistence.EntityNotFoundException
 			Kunde kundeProxy = em.getReference(Kunde.class, kunde100200.getId());
-			// Kunde kundeProxyNotFound = em.getReference(Kunde.class, "xxx"); 
+			Kunde kundeProxyNotFound = em.getReference(Kunde.class, "xxx"); 
 			
             System.out.println(kundeProxy.toString());
             kundeProxy.setNachname("Huber");	// force update

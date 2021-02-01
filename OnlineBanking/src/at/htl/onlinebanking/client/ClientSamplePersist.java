@@ -8,7 +8,7 @@ import at.htl.onlinebanking.model.Kunde;
 public class ClientSamplePersist extends ClientCommon {
 
 	public static void main(String[] args) {
-		(new ClientSampleLoadEntity()).execute();	
+		(new ClientSamplePersist()).execute();	
 	}
 	
 	void execute() {
