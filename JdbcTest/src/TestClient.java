@@ -11,7 +11,6 @@ public class TestClient {
 	private static final int commitFrequ = 100;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("start Test Client");
 		try {	
 			TestClient client = new TestClient();
