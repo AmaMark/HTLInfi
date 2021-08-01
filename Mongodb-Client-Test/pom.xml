@@ -10,5 +10,5 @@
         <artifactId>mongodb-driver-sync</artifactId>
         <version>4.2.2</version>
     </dependency>
-</dependencies>
+  </dependencies>
 </project>

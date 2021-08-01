@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.bson.BSONObject;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -13,6 +16,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
+import com.mongodb.client.model.Sorts;
 
 public class Client {
 
@@ -70,12 +74,18 @@ public class Client {
 	}
 
 	private void insertTestPerson() {
-		final Document personDocument = new Document("name", "Kurt"). append("age", "66").append("bornIn", "Wien").append("livesIn", "Innsbruck");
+		final Document personDocument = 
+				new Document("name", "Kurt")
+				.append("age", "66")
+				.append("bornIn", "Wien")
+				.append("livesIn", "Innsbruck");
+		
 		collection.insertOne(personDocument);
 	}
 	
 	private void queryAll() {
-		final FindIterable<Document> results = collection.find();
+		// sort(new BasicDBObject("name",1))
+		FindIterable<Document> results = collection.find().sort(Sorts.ascending("name"));		
 		printAll(results);
 	}
 	
@@ -86,12 +96,7 @@ public class Client {
 	
 	private List<String> getDBNames() {
 	    MongoIterable<String> iterable = mongoClient.listDatabaseNames();
-	    MongoCursor<String> iterator = iterable.iterator();
-	    
-	    List<String> dbNames = new ArrayList<>();
-	    while( iterator.hasNext() ) {
-	    	dbNames.add(iterator.next());
-		}
+	    List<String> dbNames = iterable.into(new ArrayList<>());
 	    return dbNames;
 	}
 	
